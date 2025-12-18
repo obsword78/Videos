@@ -22,6 +22,10 @@ local function ApplyArrow(cellIndex, neighbourTableIndex)
 
 	newArrow.Parent = workspace[cellIndex]
 end
+
+local function ToVectorFlow(neighbourTableIndex)
+	return (neighbourTableIndex == 1 and -Vector3.zAxis) or (neighbourTableIndex == 2 and Vector3.zAxis) or (neighbourTableIndex == 3 and -Vector3.xAxis) or Vector3.xAxis
+end
 --======================================================
 function Flowfield.new()
 	local self = setmetatable({}, Flowfield)
@@ -74,6 +78,8 @@ function Flowfield:Generate(destinationCell)
 		
 		for i, neighbourIndex in getNeighbourIndexes(cell) do
 			if cost - self.Costs[neighbourIndex] ~= 1 then continue end
+			self.FlowVectors[index] = ToVectorFlow(i)
+			break
 		end
 	end
 end
