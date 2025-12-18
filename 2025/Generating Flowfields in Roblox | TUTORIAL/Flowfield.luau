@@ -14,6 +14,14 @@ local function getNeighbourIndexes(cell)
 
 	return neighbourIndexes
 end
+
+local function ApplyArrow(cellIndex, neighbourTableIndex)
+	print(neighbourTableIndex)
+	local dir = (neighbourTableIndex == 1 and "up") or (neighbourTableIndex == 2 and "down") or (neighbourTableIndex == 3 and "left") or "right"
+	local newArrow = game.ServerStorage[dir]:Clone()
+
+	newArrow.Parent = workspace[cellIndex]
+end
 --======================================================
 function Flowfield.new()
 	local self = setmetatable({}, Flowfield)
