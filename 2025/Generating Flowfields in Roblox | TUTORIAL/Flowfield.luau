@@ -16,7 +16,6 @@ local function getNeighbourIndexes(cell)
 end
 
 local function ApplyArrow(cellIndex, neighbourTableIndex)
-	print(neighbourTableIndex)
 	local dir = (neighbourTableIndex == 1 and "up") or (neighbourTableIndex == 2 and "down") or (neighbourTableIndex == 3 and "left") or "right"
 	local newArrow = game.ServerStorage[dir]:Clone()
 
@@ -78,6 +77,7 @@ function Flowfield:Generate(destinationCell)
 		
 		for i, neighbourIndex in getNeighbourIndexes(cell) do
 			if cost - self.Costs[neighbourIndex] ~= 1 then continue end
+			ApplyArrow(index, i)
 			self.FlowVectors[index] = ToVectorFlow(i)
 			break
 		end
