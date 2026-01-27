@@ -36,7 +36,7 @@ function module:SetForces(flock : {Model}, flowfield, previousForces)
 		end
 
 		cohesionForce = (averagePos-Boid.PrimaryPart.Position).Unit*2
-		goalForce = flowvector*10
+		goalForce = flowvector*50
 		--=================================================
 		local finalForce = goalForce+cohesionForce+separationForce
 		finalForce -= Vector3.yAxis * finalForce
